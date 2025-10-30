@@ -1,0 +1,46 @@
+services:
+    chatbot:
+        build: .
+        container_name: CogniXcelerate-Chatbotonedrive
+        ports:
+            - '3033:3010'
+        environment:
+            NODE_ENV: production
+
+            # Database config for Postgres
+            DATABASE_TYPE: postgres
+            DATABASE_PORT: 5432 # internal container port
+            DATABASE_HOST: postgres # service name, not localhost
+            DATABASE_NAME: cognixcelerate
+            DATABASE_USER: postgres
+            DATABASE_PASSWORD: password # matched with postgres service
+
+        volumes:
+            - app_uploads:/usr/src/.flowise
+
+        depends_on:
+            postgres:
+                condition: service_healthy
+        restart: unless-stopped
+
+    postgres:
+        image: postgres:16
+        container_name: CogniXcelerate-Postgres-onedrive
+        ports:
+            - '5434:5432'
+        environment:
+            POSTGRES_DB: cognixcelerate
+            POSTGRES_USER: postgres
+            POSTGRES_PASSWORD: password
+        volumes:
+            - postgres_data:/var/lib/postgresql/data
+        healthcheck:
+            test: ['CMD-SHELL', 'pg_isready -U postgres -d cognixcelerate']
+            interval: 5s
+            timeout: 5s
+            retries: 5
+        restart: unless-stopped
+
+volumes:
+    app_uploads:
+    postgres_data:

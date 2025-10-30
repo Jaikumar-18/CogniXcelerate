@@ -1,0 +1,838 @@
+{
+    "nodes": [
+      {
+        "id": "startAgentflow_0",
+        "type": "agentFlow",
+        "position": {
+          "x": -593.3079681398495,
+          "y": 70.20841171821222
+        },
+        "data": {
+          "id": "startAgentflow_0",
+          "label": "Start",
+          "version": 1.1,
+          "name": "startAgentflow",
+          "type": "Start",
+          "color": "#7EE787",
+          "hideInput": true,
+          "baseClasses": [
+            "Start"
+          ],
+          "category": "Agent Flows",
+          "description": "Starting point of the agentflow",
+          "inputParams": [
+            {
+              "label": "Input Type",
+              "name": "startInputType",
+              "type": "options",
+              "options": [
+                {
+                  "label": "Chat Input",
+                  "name": "chatInput",
+                  "description": "Start the conversation with chat input"
+                },
+                {
+                  "label": "Form Input",
+                  "name": "formInput",
+                  "description": "Start the workflow with form inputs"
+                }
+              ],
+              "default": "chatInput",
+              "id": "startAgentflow_0-input-startInputType-options",
+              "display": true
+            },
+            {
+              "label": "Form Title",
+              "name": "formTitle",
+              "type": "string",
+              "placeholder": "Please Fill Out The Form",
+              "show": {
+                "startInputType": "formInput"
+              },
+              "id": "startAgentflow_0-input-formTitle-string",
+              "display": false
+            },
+            {
+              "label": "Form Description",
+              "name": "formDescription",
+              "type": "string",
+              "placeholder": "Complete all fields below to continue",
+              "show": {
+                "startInputType": "formInput"
+              },
+              "id": "startAgentflow_0-input-formDescription-string",
+              "display": false
+            },
+            {
+              "label": "Form Input Types",
+              "name": "formInputTypes",
+              "description": "Specify the type of form input",
+              "type": "array",
+              "show": {
+                "startInputType": "formInput"
+              },
+              "array": [
+                {
+                  "label": "Type",
+                  "name": "type",
+                  "type": "options",
+                  "options": [
+                    {
+                      "label": "String",
+                      "name": "string"
+                    },
+                    {
+                      "label": "Number",
+                      "name": "number"
+                    },
+                    {
+                      "label": "Boolean",
+                      "name": "boolean"
+                    },
+                    {
+                      "label": "Options",
+                      "name": "options"
+                    }
+                  ],
+                  "default": "string"
+                },
+                {
+                  "label": "Label",
+                  "name": "label",
+                  "type": "string",
+                  "placeholder": "Label for the input"
+                },
+                {
+                  "label": "Variable Name",
+                  "name": "name",
+                  "type": "string",
+                  "placeholder": "Variable name for the input (must be camel case)",
+                  "description": "Variable name must be camel case. For example: firstName, lastName, etc."
+                },
+                {
+                  "label": "Add Options",
+                  "name": "addOptions",
+                  "type": "array",
+                  "show": {
+                    "formInputTypes[$index].type": "options"
+                  },
+                  "array": [
+                    {
+                      "label": "Option",
+                      "name": "option",
+                      "type": "string"
+                    }
+                  ]
+                }
+              ],
+              "id": "startAgentflow_0-input-formInputTypes-array",
+              "display": false
+            },
+            {
+              "label": "Ephemeral Memory",
+              "name": "startEphemeralMemory",
+              "type": "boolean",
+              "description": "Start fresh for every execution without past chat history",
+              "optional": true,
+              "id": "startAgentflow_0-input-startEphemeralMemory-boolean",
+              "display": true
+            },
+            {
+              "label": "Flow State",
+              "name": "startState",
+              "description": "Runtime state during the execution of the workflow",
+              "type": "array",
+              "optional": true,
+              "array": [
+                {
+                  "label": "Key",
+                  "name": "key",
+                  "type": "string",
+                  "placeholder": "Foo"
+                },
+                {
+                  "label": "Value",
+                  "name": "value",
+                  "type": "string",
+                  "placeholder": "Bar",
+                  "optional": true
+                }
+              ],
+              "id": "startAgentflow_0-input-startState-array",
+              "display": true
+            },
+            {
+              "label": "Persist State",
+              "name": "startPersistState",
+              "type": "boolean",
+              "description": "Persist the state in the same session",
+              "optional": true,
+              "id": "startAgentflow_0-input-startPersistState-boolean",
+              "display": true
+            }
+          ],
+          "inputAnchors": [],
+          "inputs": {
+            "startInputType": "chatInput",
+            "startEphemeralMemory": true,
+            "startState": [],
+            "startPersistState": ""
+          },
+          "outputAnchors": [
+            {
+              "id": "startAgentflow_0-output-startAgentflow",
+              "label": "Start",
+              "name": "startAgentflow"
+            }
+          ],
+          "outputs": {},
+          "selected": false
+        },
+        "width": 103,
+        "height": 66,
+        "selected": false,
+        "positionAbsolute": {
+          "x": -593.3079681398495,
+          "y": 70.20841171821222
+        },
+        "dragging": false
+      },
+      {
+        "id": "toolAgentflow_0",
+        "position": {
+          "x": 147.4951268161079,
+          "y": -46.343277240162465
+        },
+        "data": {
+          "id": "toolAgentflow_0",
+          "label": "Tool 0",
+          "version": 1.1,
+          "name": "toolAgentflow",
+          "type": "Tool",
+          "color": "#d4a373",
+          "baseClasses": [
+            "Tool"
+          ],
+          "category": "Agent Flows",
+          "description": "Tools allow LLM to interact with external systems",
+          "inputParams": [
+            {
+              "label": "Tool",
+              "name": "toolAgentflowSelectedTool",
+              "type": "asyncOptions",
+              "loadMethod": "listTools",
+              "loadConfig": true,
+              "id": "toolAgentflow_0-input-toolAgentflowSelectedTool-asyncOptions",
+              "display": true
+            },
+            {
+              "label": "Tool Input Arguments",
+              "name": "toolInputArgs",
+              "type": "array",
+              "acceptVariable": true,
+              "refresh": true,
+              "array": [
+                {
+                  "label": "Input Argument Name",
+                  "name": "inputArgName",
+                  "type": "asyncOptions",
+                  "loadMethod": "listToolInputArgs",
+                  "refresh": true
+                },
+                {
+                  "label": "Input Argument Value",
+                  "name": "inputArgValue",
+                  "type": "string",
+                  "acceptVariable": true
+                }
+              ],
+              "show": {
+                "toolAgentflowSelectedTool": ".+"
+              },
+              "id": "toolAgentflow_0-input-toolInputArgs-array",
+              "display": true
+            },
+            {
+              "label": "Update Flow State",
+              "name": "toolUpdateState",
+              "description": "Update runtime state during the execution of the workflow",
+              "type": "array",
+              "optional": true,
+              "acceptVariable": true,
+              "array": [
+                {
+                  "label": "Key",
+                  "name": "key",
+                  "type": "asyncOptions",
+                  "loadMethod": "listRuntimeStateKeys",
+                  "freeSolo": true
+                },
+                {
+                  "label": "Value",
+                  "name": "value",
+                  "type": "string",
+                  "acceptVariable": true,
+                  "acceptNodeOutputAsVariable": true
+                }
+              ],
+              "id": "toolAgentflow_0-input-toolUpdateState-array",
+              "display": true
+            }
+          ],
+          "inputAnchors": [],
+          "inputs": {
+            "toolAgentflowSelectedTool": "gmail",
+            "toolInputArgs": [
+              {
+                "inputArgName": "to",
+                "inputArgValue": "<p>ragulvasanth24@gmail.com</p>"
+              },
+              {
+                "inputArgName": "subject",
+                "inputArgValue": "<p>Technological_Stuff</p>"
+              },
+              {
+                "inputArgName": "body",
+                "inputArgValue": "<p><span class=\"variable\" data-type=\"mention\" data-id=\"customFunctionAgentflow_0\" data-label=\"customFunctionAgentflow_0\">{{ customFunctionAgentflow_0 }}</span> </p>"
+              }
+            ],
+            "toolUpdateState": "",
+            "undefined": "",
+            "toolAgentflowSelectedToolConfig": {
+              "credential": "",
+              "gmailType": "messages",
+              "messageActions": "[\"sendMessage\"]",
+              "toolAgentflowSelectedTool": "gmail",
+              "messageTo": "ragulvasanth24@gmail.com",
+              "messageSubject": "technological stuff",
+              "messageBody": ""
+            }
+          },
+          "outputAnchors": [
+            {
+              "id": "toolAgentflow_0-output-toolAgentflow",
+              "label": "Tool",
+              "name": "toolAgentflow"
+            }
+          ],
+          "outputs": {},
+          "selected": false
+        },
+        "type": "agentFlow",
+        "width": 112,
+        "height": 68,
+        "selected": false,
+        "dragging": false,
+        "positionAbsolute": {
+          "x": 147.4951268161079,
+          "y": -46.343277240162465
+        }
+      },
+      {
+        "id": "agentAgentflow_0",
+        "position": {
+          "x": -424.5206036720235,
+          "y": -112.37700537150073
+        },
+        "data": {
+          "id": "agentAgentflow_0",
+          "label": "Agent 0",
+          "version": 1,
+          "name": "agentAgentflow",
+          "type": "Agent",
+          "color": "#4DD0E1",
+          "baseClasses": [
+            "Agent"
+          ],
+          "category": "Agent Flows",
+          "description": "Dynamically choose and utilize tools during runtime, enabling multi-step reasoning",
+          "inputParams": [
+            {
+              "label": "Model",
+              "name": "agentModel",
+              "type": "asyncOptions",
+              "loadMethod": "listModels",
+              "loadConfig": true,
+              "id": "agentAgentflow_0-input-agentModel-asyncOptions",
+              "display": true
+            },
+            {
+              "label": "Messages",
+              "name": "agentMessages",
+              "type": "array",
+              "optional": true,
+              "acceptVariable": true,
+              "array": [
+                {
+                  "label": "Role",
+                  "name": "role",
+                  "type": "options",
+                  "options": [
+                    {
+                      "label": "System",
+                      "name": "system"
+                    },
+                    {
+                      "label": "Assistant",
+                      "name": "assistant"
+                    },
+                    {
+                      "label": "Developer",
+                      "name": "developer"
+                    },
+                    {
+                      "label": "User",
+                      "name": "user"
+                    }
+                  ]
+                },
+                {
+                  "label": "Content",
+                  "name": "content",
+                  "type": "string",
+                  "acceptVariable": true,
+                  "generateInstruction": true,
+                  "rows": 4
+                }
+              ],
+              "id": "agentAgentflow_0-input-agentMessages-array",
+              "display": true
+            },
+            {
+              "label": "Tools",
+              "name": "agentTools",
+              "type": "array",
+              "optional": true,
+              "array": [
+                {
+                  "label": "Tool",
+                  "name": "agentSelectedTool",
+                  "type": "asyncOptions",
+                  "loadMethod": "listTools",
+                  "loadConfig": true
+                },
+                {
+                  "label": "Require Human Input",
+                  "name": "agentSelectedToolRequiresHumanInput",
+                  "type": "boolean",
+                  "optional": true
+                }
+              ],
+              "id": "agentAgentflow_0-input-agentTools-array",
+              "display": true
+            },
+            {
+              "label": "Knowledge (Document Stores)",
+              "name": "agentKnowledgeDocumentStores",
+              "type": "array",
+              "description": "Give your agent context about different document sources. Document stores must be upserted in advance.",
+              "array": [
+                {
+                  "label": "Document Store",
+                  "name": "documentStore",
+                  "type": "asyncOptions",
+                  "loadMethod": "listStores"
+                },
+                {
+                  "label": "Describe Knowledge",
+                  "name": "docStoreDescription",
+                  "type": "string",
+                  "generateDocStoreDescription": true,
+                  "placeholder": "Describe what the knowledge base is about, this is useful for the AI to know when and how to search for correct information",
+                  "rows": 4
+                },
+                {
+                  "label": "Return Source Documents",
+                  "name": "returnSourceDocuments",
+                  "type": "boolean",
+                  "optional": true
+                }
+              ],
+              "optional": true,
+              "id": "agentAgentflow_0-input-agentKnowledgeDocumentStores-array",
+              "display": true
+            },
+            {
+              "label": "Knowledge (Vector Embeddings)",
+              "name": "agentKnowledgeVSEmbeddings",
+              "type": "array",
+              "description": "Give your agent context about different document sources from existing vector stores and embeddings",
+              "array": [
+                {
+                  "label": "Vector Store",
+                  "name": "vectorStore",
+                  "type": "asyncOptions",
+                  "loadMethod": "listVectorStores",
+                  "loadConfig": true
+                },
+                {
+                  "label": "Embedding Model",
+                  "name": "embeddingModel",
+                  "type": "asyncOptions",
+                  "loadMethod": "listEmbeddings",
+                  "loadConfig": true
+                },
+                {
+                  "label": "Knowledge Name",
+                  "name": "knowledgeName",
+                  "type": "string",
+                  "placeholder": "A short name for the knowledge base, this is useful for the AI to know when and how to search for correct information"
+                },
+                {
+                  "label": "Describe Knowledge",
+                  "name": "knowledgeDescription",
+                  "type": "string",
+                  "placeholder": "Describe what the knowledge base is about, this is useful for the AI to know when and how to search for correct information",
+                  "rows": 4
+                },
+                {
+                  "label": "Return Source Documents",
+                  "name": "returnSourceDocuments",
+                  "type": "boolean",
+                  "optional": true
+                }
+              ],
+              "optional": true,
+              "id": "agentAgentflow_0-input-agentKnowledgeVSEmbeddings-array",
+              "display": true
+            },
+            {
+              "label": "Enable Memory",
+              "name": "agentEnableMemory",
+              "type": "boolean",
+              "description": "Enable memory for the conversation thread",
+              "default": true,
+              "optional": true,
+              "id": "agentAgentflow_0-input-agentEnableMemory-boolean",
+              "display": true
+            },
+            {
+              "label": "Memory Type",
+              "name": "agentMemoryType",
+              "type": "options",
+              "options": [
+                {
+                  "label": "All Messages",
+                  "name": "allMessages",
+                  "description": "Retrieve all messages from the conversation"
+                },
+                {
+                  "label": "Window Size",
+                  "name": "windowSize",
+                  "description": "Uses a fixed window size to surface the last N messages"
+                },
+                {
+                  "label": "Conversation Summary",
+                  "name": "conversationSummary",
+                  "description": "Summarizes the whole conversation"
+                },
+                {
+                  "label": "Conversation Summary Buffer",
+                  "name": "conversationSummaryBuffer",
+                  "description": "Summarize conversations once token limit is reached. Default to 2000"
+                }
+              ],
+              "optional": true,
+              "default": "allMessages",
+              "show": {
+                "agentEnableMemory": true
+              },
+              "id": "agentAgentflow_0-input-agentMemoryType-options",
+              "display": true
+            },
+            {
+              "label": "Window Size",
+              "name": "agentMemoryWindowSize",
+              "type": "number",
+              "default": "20",
+              "description": "Uses a fixed window size to surface the last N messages",
+              "show": {
+                "agentMemoryType": "windowSize"
+              },
+              "id": "agentAgentflow_0-input-agentMemoryWindowSize-number",
+              "display": false
+            },
+            {
+              "label": "Max Token Limit",
+              "name": "agentMemoryMaxTokenLimit",
+              "type": "number",
+              "default": "2000",
+              "description": "Summarize conversations once token limit is reached. Default to 2000",
+              "show": {
+                "agentMemoryType": "conversationSummaryBuffer"
+              },
+              "id": "agentAgentflow_0-input-agentMemoryMaxTokenLimit-number",
+              "display": false
+            },
+            {
+              "label": "Input Message",
+              "name": "agentUserMessage",
+              "type": "string",
+              "description": "Add an input message as user message at the end of the conversation",
+              "rows": 4,
+              "optional": true,
+              "acceptVariable": true,
+              "show": {
+                "agentEnableMemory": true
+              },
+              "id": "agentAgentflow_0-input-agentUserMessage-string",
+              "display": true
+            },
+            {
+              "label": "Return Response As",
+              "name": "agentReturnResponseAs",
+              "type": "options",
+              "options": [
+                {
+                  "label": "User Message",
+                  "name": "userMessage"
+                },
+                {
+                  "label": "Assistant Message",
+                  "name": "assistantMessage"
+                }
+              ],
+              "default": "userMessage",
+              "id": "agentAgentflow_0-input-agentReturnResponseAs-options",
+              "display": true
+            },
+            {
+              "label": "Update Flow State",
+              "name": "agentUpdateState",
+              "description": "Update runtime state during the execution of the workflow",
+              "type": "array",
+              "optional": true,
+              "acceptVariable": true,
+              "array": [
+                {
+                  "label": "Key",
+                  "name": "key",
+                  "type": "asyncOptions",
+                  "loadMethod": "listRuntimeStateKeys",
+                  "freeSolo": true
+                },
+                {
+                  "label": "Value",
+                  "name": "value",
+                  "type": "string",
+                  "acceptVariable": true,
+                  "acceptNodeOutputAsVariable": true
+                }
+              ],
+              "id": "agentAgentflow_0-input-agentUpdateState-array",
+              "display": true
+            }
+          ],
+          "inputAnchors": [],
+          "inputs": {
+            "agentModel": "chatOpenAI",
+            "agentMessages": [],
+            "agentTools": [
+              {
+                "agentSelectedTool": "serpAPI",
+                "agentSelectedToolRequiresHumanInput": false,
+                "agentSelectedToolConfig": {
+                  "agentSelectedTool": "serpAPI"
+                }
+              }
+            ],
+            "agentKnowledgeDocumentStores": [],
+            "agentKnowledgeVSEmbeddings": [],
+            "agentEnableMemory": true,
+            "agentMemoryType": "allMessages",
+            "agentUserMessage": "<p></p>",
+            "agentReturnResponseAs": "assistantMessage",
+            "agentUpdateState": [],
+            "agentModelConfig": {
+              "credential": "",
+              "modelName": "gpt-4.1",
+              "temperature": 0.9,
+              "streaming": true,
+              "maxTokens": "",
+              "topP": "",
+              "frequencyPenalty": "",
+              "presencePenalty": "",
+              "timeout": "",
+              "strictToolCalling": "",
+              "stopSequence": "",
+              "basepath": "",
+              "proxyUrl": "",
+              "baseOptions": "",
+              "allowImageUploads": "",
+              "reasoningEffort": "medium",
+              "agentModel": "chatOpenAI"
+            },
+            "undefined": ""
+          },
+          "outputAnchors": [
+            {
+              "id": "agentAgentflow_0-output-agentAgentflow",
+              "label": "Agent",
+              "name": "agentAgentflow"
+            }
+          ],
+          "outputs": {},
+          "selected": false
+        },
+        "type": "agentFlow",
+        "width": 148,
+        "height": 100,
+        "selected": false,
+        "dragging": false,
+        "positionAbsolute": {
+          "x": -424.5206036720235,
+          "y": -112.37700537150073
+        }
+      },
+      {
+        "id": "customFunctionAgentflow_0",
+        "position": {
+          "x": -156.0581168008083,
+          "y": -113.83428177768792
+        },
+        "data": {
+          "id": "customFunctionAgentflow_0",
+          "label": "Custom Function 0",
+          "version": 1,
+          "name": "customFunctionAgentflow",
+          "type": "CustomFunction",
+          "color": "#E4B7FF",
+          "baseClasses": [
+            "CustomFunction"
+          ],
+          "category": "Agent Flows",
+          "description": "Execute custom function",
+          "inputParams": [
+            {
+              "label": "Input Variables",
+              "name": "customFunctionInputVariables",
+              "description": "Input variables can be used in the function with prefix $. For example: $foo",
+              "type": "array",
+              "optional": true,
+              "acceptVariable": true,
+              "array": [
+                {
+                  "label": "Variable Name",
+                  "name": "variableName",
+                  "type": "string"
+                },
+                {
+                  "label": "Variable Value",
+                  "name": "variableValue",
+                  "type": "string",
+                  "acceptVariable": true
+                }
+              ],
+              "id": "customFunctionAgentflow_0-input-customFunctionInputVariables-array",
+              "display": true
+            },
+            {
+              "label": "Javascript Function",
+              "name": "customFunctionJavascriptFunction",
+              "type": "code",
+              "codeExample": "/*\n* You can use any libraries imported in Flowise\n* You can use properties specified in Input Schema as variables. Ex: Property = userid, Variable = $userid\n* You can get default flow config: $flow.sessionId, $flow.chatId, $flow.chatflowId, $flow.input, $flow.state\n* You can get custom variables: $vars.<variable-name>\n* Must return a string value at the end of function\n*/\n\nconst fetch = require('node-fetch');\nconst url = 'https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&current_weather=true';\nconst options = {\n    method: 'GET',\n    headers: {\n        'Content-Type': 'application/json'\n    }\n};\ntry {\n    const response = await fetch(url, options);\n    const text = await response.text();\n    return text;\n} catch (error) {\n    console.error(error);\n    return '';\n}",
+              "description": "The function to execute. Must return a string or an object that can be converted to a string.",
+              "id": "customFunctionAgentflow_0-input-customFunctionJavascriptFunction-code",
+              "display": true
+            },
+            {
+              "label": "Update Flow State",
+              "name": "customFunctionUpdateState",
+              "description": "Update runtime state during the execution of the workflow",
+              "type": "array",
+              "optional": true,
+              "acceptVariable": true,
+              "array": [
+                {
+                  "label": "Key",
+                  "name": "key",
+                  "type": "asyncOptions",
+                  "loadMethod": "listRuntimeStateKeys",
+                  "freeSolo": true
+                },
+                {
+                  "label": "Value",
+                  "name": "value",
+                  "type": "string",
+                  "acceptVariable": true,
+                  "acceptNodeOutputAsVariable": true
+                }
+              ],
+              "id": "customFunctionAgentflow_0-input-customFunctionUpdateState-array",
+              "display": true
+            }
+          ],
+          "inputAnchors": [],
+          "inputs": {
+            "customFunctionInputVariables": [
+              {
+                "variableName": "content",
+                "variableValue": "<p><span class=\"variable\" data-type=\"mention\" data-id=\"agentAgentflow_0\" data-label=\"agentAgentflow_0\">{{ agentAgentflow_0 }}</span> </p>"
+              }
+            ],
+            "customFunctionJavascriptFunction": "/*\n* You can use any libraries imported in Flowise\n* You can use properties specified in Input Schema as variables. Ex: Property = userid, Variable = $userid\n* You can get default flow config: $flow.sessionId, $flow.chatId, $flow.chatflowId, $flow.input, $flow.state\n* You can get custom variables: $vars.<variable-name>\n* Must return a string value at the end of function\n*/function parseNewsArticles(rawText) {\n  const articleRegex = /\\d+\\.\\s*\\*\\*\\[([^\\]]+)]\\(([^)]+)\\)\\*\\*\\s*\\*Source:\\s*([^*]+)\\*\\s*\\*Published:\\s*([^*]+)\\*/g;\n  const articles = [];\n\n  if (!rawText || rawText.trim() === \"\") {\n    return \"<p>❗ No content to parse.</p>\";\n  }\n\n  let match;\n  while ((match = articleRegex.exec(rawText)) !== null) {\n    const title = match[1].trim();\n    const url = match[2].trim();\n    const source = match[3].trim();\n    const published = match[4].trim();\n\n    articles.push({\n      title, url, source, published\n    });\n  }\n\n  if (articles.length === 0) {\n    return \"<p>❗ No valid articles found.</p>\";\n  }\n\n  // Build HTML content\n  const htmlOutput = `\n    <h2>📰 AI News Summary</h2>\n    <ol>\n      ${articles.map(article => `\n        <li>\n          <strong><a href=\"${article.url}\" target=\"_blank\">${article.title}</a></strong><br/>\n          <em>Source:</em> ${article.source} <br/>\n          <em>Published:</em> ${article.published}\n        </li>\n      `).join('')}\n    </ol>\n  `;\n\n  return htmlOutput;\n}\n\nconst rawContent = $content;\nreturn parseNewsArticles(rawContent);\n",
+            "customFunctionUpdateState": ""
+          },
+          "outputAnchors": [
+            {
+              "id": "customFunctionAgentflow_0-output-customFunctionAgentflow",
+              "label": "Custom Function",
+              "name": "customFunctionAgentflow"
+            }
+          ],
+          "outputs": {},
+          "selected": false
+        },
+        "type": "agentFlow",
+        "width": 194,
+        "height": 66,
+        "selected": false,
+        "dragging": false,
+        "positionAbsolute": {
+          "x": -156.0581168008083,
+          "y": -113.83428177768792
+        }
+      }
+    ],
+    "edges": [
+      {
+        "source": "startAgentflow_0",
+        "sourceHandle": "startAgentflow_0-output-startAgentflow",
+        "target": "agentAgentflow_0",
+        "targetHandle": "agentAgentflow_0",
+        "data": {
+          "sourceColor": "#7EE787",
+          "targetColor": "#4DD0E1",
+          "isHumanInput": false
+        },
+        "type": "agentFlow",
+        "id": "startAgentflow_0-startAgentflow_0-output-startAgentflow-agentAgentflow_0-agentAgentflow_0"
+      },
+      {
+        "source": "agentAgentflow_0",
+        "sourceHandle": "agentAgentflow_0-output-agentAgentflow",
+        "target": "customFunctionAgentflow_0",
+        "targetHandle": "customFunctionAgentflow_0",
+        "data": {
+          "sourceColor": "#4DD0E1",
+          "targetColor": "#E4B7FF",
+          "isHumanInput": false
+        },
+        "type": "agentFlow",
+        "id": "agentAgentflow_0-agentAgentflow_0-output-agentAgentflow-customFunctionAgentflow_0-customFunctionAgentflow_0"
+      },
+      {
+        "source": "customFunctionAgentflow_0",
+        "sourceHandle": "customFunctionAgentflow_0-output-customFunctionAgentflow",
+        "target": "toolAgentflow_0",
+        "targetHandle": "toolAgentflow_0",
+        "data": {
+          "sourceColor": "#E4B7FF",
+          "targetColor": "#d4a373",
+          "isHumanInput": false
+        },
+        "type": "agentFlow",
+        "id": "customFunctionAgentflow_0-customFunctionAgentflow_0-output-customFunctionAgentflow-toolAgentflow_0-toolAgentflow_0"
+      }
+    ]
+  }
